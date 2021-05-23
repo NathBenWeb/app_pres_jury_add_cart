@@ -1,0 +1,56 @@
+#containerChefMeals{
+    margin-top: 100px;
+    font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+  #buttonChefs, #btnSearch, #search {
+    color:  rgb(174,140,95);
+    background-color: #CECECE;
+    border: solid 1px rgb(174,140,95);
+  }
+  
+  #buttonMeals{
+    margin-left: 200px;
+  }
+  
+  #listChefs{
+    width: 206px;
+    border: solid 1px rgb(174,140,95);
+    background-color: #CECECE;
+    color:  rgb(174,140,95);
+    z-index: 1;
+  }
+
+  #titreCardAccueil{
+    font-size: 20px;
+  }
+  
+  h1 > span{
+    color:  rgb(174,140,95);
+    font-size: 30px;
+  }
+  
+  #buttonAccueil{
+    background-color: rgb(174,140,95);
+    color: #f2f2f2;
+    margin-left:280px;
+    margin-bottom: 20px;
+    padding :10px 20px 10px 20px;
+  }
+  
+  #buttonAccueil:hover {
+    color: rgb(174,140,95);
+    background-color: #f2f2f2;
+  }
+  
+  #cardAccueil{
+    border: solid 0.3px rgb(174,140,95);
+  }
+  
+  .titrePlat{
+    font-weight: bold;
+  }
+  
+  .titrePlat, #start, #dish, #dessert{
+    margin-left: 110px;
+  }
+  

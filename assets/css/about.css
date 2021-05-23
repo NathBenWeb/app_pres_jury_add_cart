@@ -1,0 +1,24 @@
+#about{
+    display: flex;
+    background-color: rgb(3, 3, 29);
+    border: solid 2px rgb(174,140,95);
+   height: 621px;
+  }
+  
+  #img_about{
+    width: 100%;
+    background: url("../../assets/pictures/mv_entree.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+  }
+  
+  #text_about{
+    color: rgb(174,140,95);
+    width: 100%;
+    padding: 0 40px 0 40px;
+    margin: auto;
+    font-size: 3vh;
+    text-align: center;
+    font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;;
+  }  

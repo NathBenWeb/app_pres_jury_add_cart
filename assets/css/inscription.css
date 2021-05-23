@@ -1,0 +1,23 @@
+#inscr{
+    border: solid 3px black;
+}
+  
+#inscription{
+    width: 50%;
+    border: solid 1px rgb(174,140,95);
+    padding: 30px;
+    padding-bottom: 14px;
+    
+}
+  
+#titreInscription{
+    text-align: center;
+    color:rgb(3, 3, 29);
+    font-size: 30px;
+}
+  
+#titreImg{
+    text-align: center;
+    color:rgb(3, 3, 29);
+    font-size: 20px;
+}

@@ -1,0 +1,121 @@
+#containerShop{
+  margin-top: 100px;
+  font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+#buttonChefs, #btnSearch, #search {
+  color:  rgb(174,140,95);
+  background-color: #CECECE;
+  border: solid 1px rgb(174,140,95);
+  margin-bottom: 30px;
+}
+
+#buttonMeals{
+  margin-left: 200px;
+}
+
+#listChefs{
+  width: 206px;
+  border: solid 1px rgb(174,140,95);
+  background-color: #CECECE;
+  color:  rgb(174,140,95);
+  z-index: 1;
+}
+
+#cardAccueil{
+  border: solid 0.3px rgb(174,140,95);
+}
+
+#titreCardAccueil{
+  font-size: 15px;
+}
+
+#titreCardAccueil > span{
+  color:  rgb(174,140,95);
+  font-size: 20px;
+}
+
+#imgMeal{
+  margin-left: 25px;
+  margin-top: 50px;
+ }
+
+.titrePlat{
+  font-weight: bold;
+}
+
+#addCart{
+  background-color: rgb(174,140,95);
+  color: #f2f2f2;
+  padding :5px 5px 5px 8px;
+  margin-left: 110px;
+}
+
+#addCart:hover {
+  color: rgb(174,140,95);
+  background-color: #f2f2f2;
+}
+
+/* -----------------Meal Item------------------------------- */
+
+#buttonValid{
+  background-color: rgb(174,140,95);
+  color: #f2f2f2;
+  margin-left: 333px;
+  border-radius: 10px;
+}
+
+#buttonValid:hover {
+  color: rgb(174,140,95);
+  background-color: rgb(3, 3, 29);
+ 
+}
+
+#priceAccueil, #priceItem{
+  color: rgb(174,140,95);
+  font-weight: bold;
+  font-size: larger;
+}
+
+#checkout-button{
+  background-color: rgb(174,140,95);
+  color: #f2f2f2;
+  border-radius: 10px;
+}
+
+#checkout-button:hover {
+  color: rgb(174,140,95);
+  background-color: rgb(3, 3, 29);
+  border-radius: 10px;
+}
+
+#containerItem{
+  margin-top: 30px;
+}
+
+#validation{
+  margin-top: 17px;
+}
+
+.validation{
+  font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+@media screen and (max-width: 770px) {
+  #textChef{
+      text-align: justify;
+      padding-right: 40px;
+  }
+
+  #btnSearch, #search {
+      display: none;
+  }
+  
+  #buttonChefs{
+      margin-right: 200px;
+  }
+
+}
+
+
+
