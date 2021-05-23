@@ -118,8 +118,14 @@ class Router{
                     case "chefs" :
                         $this->ctrPublic-> chefsSlides();
                         break;
-                    case "checkout" :
-                        $this->ctrPublic->recap();
+                    // case "checkout" :
+                    //     $this->ctrPublic->recap();
+                    //     break;
+                    case "cart" :
+                        $this->ctrPublic->addCart();
+                        break;
+                    case "updateCart" :
+                        $this->ctrPublic->removeCart();
                         break;
                     case "pay" :
                         $this->ctrPublic->payment();

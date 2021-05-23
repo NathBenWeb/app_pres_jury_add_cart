@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="./assets/css/about.css">
     <link rel="stylesheet" href="./assets/css/shop.css">
     <link rel="stylesheet" href="./assets/css/chefMeals.css">
+    <link rel="stylesheet" href="./assets/css/cart.css">
     <link rel="icon" type="image/png" sizes="18x18" href="./assets/pictures/logo2.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 </head>
@@ -24,7 +25,6 @@
     <a id="hamburger" href="javascript:void(0);" class="icon" onclick="myFunction()"><i class="fa fa-bars"></i></a>
     <a class="nav-link" aria-current="page" href="index.php?action=shop"><i class="fas fa-store"></i> Boutique</a>
     <a class="nav-link" aria-current="page" href="index.php?action=chefs"><i class="fas fa-bread-slice"></i> Vos chefs</a>
-    <a class="nav-link" href="index.php?action=checkout" value=""><i class="fas fa-shopping-basket"></i> Votre panier</a>
     <a class="nav-link" href="index.php?action=contact"><i class="fa fa-fw fa-envelope"></i> Contact</a>
     <a class="nav-link" href="index.php?action=about"><i class="far fa-hand-point-right"></i> A propos</a>
 
@@ -32,6 +32,18 @@
     <a class="nav-link" href="index.php?action=sign_in" value=""> Connexion
     <a class="nav-link" href="index.php?action=sign_up" value="">S'inscrire</a>
     <?php } ?>
+
+    <!------------------------- Compteur panier ----------------------------->
+    <a class="nav-link" href="index.php?action=updateCart" value=""><i class="fas fa-shopping-basket"></i>
+      <span id="cartCount" class="badge"></span>
+      <?php
+        if(isset($_SESSION['cart'])){
+          $nb_cart = sizeof($_SESSION['cart']);
+          echo $nb_cart;
+        }
+      ?>
+    </a>
+    <!------------------------------------------------------------------------>
 
     <?php if(isset($_SESSION['AuthClient'])){?>
     <li class="nav-item dropdown" >
@@ -75,8 +87,5 @@
   <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.5.1.js"></script>
   <script src="./assets/js/scriptStripe.js"></script>
   <script src="./assets/js/nav.js"></script>
-  <!-- <script src="./assets/js/templatePublic.js"></script> -->
-  
-  
 </body>
 </html> 

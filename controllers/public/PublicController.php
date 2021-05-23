@@ -50,48 +50,60 @@ class PublicController{
         }
     }
 
-    
-    // public function recap(){ //add panier
-    //     if(isset($_POST["envoi"]) && !empty($_POST["name_meal"]) && !empty($_POST["price"])){
-    //         $id_meal = htmlspecialchars(addslashes($_POST["id_meal"]));
-    //         $name_meal = htmlspecialchars(addslashes($_POST["name_meal"]));
-    //         $picture_meal = htmlspecialchars(addslashes($_POST["picture_meal"]));
-    //         $name_chef = htmlspecialchars(addslashes($_POST["name_chef"]));
-    //         $price = htmlspecialchars(addslashes($_POST["price"]));
-    //         $total=0;
-    //     }
+    public function addCart(){
+        if(isset($_POST['envoi']) ){
+            $id_meal = htmlspecialchars(addslashes($_POST['id_meal']));
+            $name_meal = htmlspecialchars(addslashes($_POST['name_meal']));
+            $picture_meal = htmlspecialchars(addslashes($_POST['picture_meal']));
+            $name_chef = htmlspecialchars(addslashes($_POST['name_chef']));
+            $price = htmlspecialchars(addslashes($_POST['price']));
+           
+            if(isset($_SESSION['cart'])){
+                $meals_cart = array_column($_SESSION['cart'], 'id_meal');
 
-    //         $newM = new Meal();
-    //         $newM->setId_meal($id_meal);
-    //         $newM->setName_meal($name_meal);
-    //         $newM->setPicture_meal($picture_meal);
-    //         $newM->setPrice($price);
-    //         $newM->getChef()->setName_chef($name_chef);
+                if(in_array($id_meal, $meals_cart)){
+                    $alreadyAdd = "Cet article a déjà été ajouté au panier";
+                }else{
+                    $nbMealCart = count($_SESSION['cart']);
 
-    //         $ok = $this->pubMeal->getMeals();
-    //         if($ok){
-    //             for($i = 0; $i < count($_POST[$id_meal]); $i++){
-    //                 $total += $_POST[$id_meal][$i] * $_POST[$id_meal][$price][$i];
-    //             }
-    //             return $total;
-    //             header("location:index.php?action=shop&id");
-    //         }
-    //         $tabChef = $this -> pubChef -> getChefs();
-    //         require_once('./views/public/mealItem.php');
+                    $newMealCart = [
+                                        "id_meal" => $id_meal,
+                                        "name_meal" => $name_meal,
+                                        "picture_meal" => $picture_meal,
+                                        "name_chef" => $name_chef,
+                                        "price" => $price   
+                                    ];
+                    $_SESSION['cart'][$nbMealCart] = $newMealCart;
+                }
+                header("location:index.php?action=shop");
+            }else{
+                $mealItemCart = [
+                                    "id_meal" => $id_meal,
+                                    "name_meal" => $name_meal,
+                                    "picture_meal" => $picture_meal,
+                                    "name_chef" => $name_chef,
+                                    "price" => $price
+                                ];
+
+                $_SESSION['cart'][0] = $mealItemCart;
+            }
+            header("location:index.php?action=shop");
+           
         
-    // }
-
-    public function recap(){
-        // var_dump($_POST);
-        if(isset($_POST["envoi"]) && !empty($_POST["name_meal"]) && !empty($_POST["price"])){
-            $id_meal = htmlspecialchars(addslashes($_POST["id_meal"]));
-            $name_meal = htmlspecialchars(addslashes($_POST["name_meal"]));
-            $picture_meal = htmlspecialchars(addslashes($_POST["picture_meal"]));
-            $name_chef = htmlspecialchars(addslashes($_POST["name_chef"]));
-            $price = htmlspecialchars(addslashes($_POST["price"]));
-
-            require_once('./views/public/mealItem.php');
         }
+        require_once('./views/public/cart.php');
+    }
+
+    public function removeCart(){
+        if(isset($_GET['id'])){
+            foreach($_SESSION['cart'] as $key => $cart){
+                if($cart['id_meal'] == $_GET['id']){
+                    unset($_SESSION['cart'][$key]);
+                    require_once('./views/public/cart.php');  
+                }  
+            }
+        }
+        require_once('./views/public/cart.php');
     }
 
     public function payment(){

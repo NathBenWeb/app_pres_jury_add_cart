@@ -21,8 +21,6 @@
 <!------------------------------Cards Meals--------------------------------------------------->
   <?php foreach($meals as $meal){?>
   <div id="cardAccueil" class="card mb-3" >
-  
-    
     <div class="row g-0 ">
       <div id="imgMeal" class="col-md-5">
         <img src="./assets/pictures/<?=$meal->getPicture_meal();?>" alt="..." width="500px" height="200px">
@@ -38,7 +36,7 @@
           <p class="card-text" id="dessert" style=""><?=substr($meal->getDessert(), 0, 350);?></p>
           
           <!-- Validate form -->
-          <form action="index.php?action=checkout" method="post">
+          <form action="index.php?action=cart" method="post">
             <button id="addCart" name="envoi" type="submit" class="btn">Ajouter au panier</button>
             <input type="hidden" name="id_meal" value="<?=$meal->getId_meal();?>">
             <input type="hidden" name="name_meal" value="<?=$meal->getName_meal();?>">
