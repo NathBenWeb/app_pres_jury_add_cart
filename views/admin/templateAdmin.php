@@ -19,7 +19,7 @@
 
 <div class="sidenav">
   <h1 class="h1Sidenav text-center text-white">Un Chef à la Maison</h4>
-  <div class=""><a class="navbar-brand text-center" href="#"><img src="./assets/pictures/logo2.png" width="70px"/></a></div>
+  <div class=""><a class="navbar-brand text-center" href="#"><img id="imgLogo" src="./assets/pictures/logo2.png" width="70px"/></a></div>
 
   <?php if(isset($_SESSION["Auth"])){ ?>
   <!-- <a href="index.php?action=login"><i class="fas fa-sign-out-alt text-white"></i>Connexion</a> -->
@@ -66,8 +66,14 @@
     <a href="index.php?action=register_user"><i class="fa fa-registered text-white" aria-hidden="true"></i> Inscription</a>
     <a href="index.php?action=list_users"><i class="fa fa-list text-white" aria-hidden="true"></i> Liste</a>
   </div>
+  <button class="dropdown-btn"><i class="fas fa-users" style="color:rgb(174,140,95);"></i> Commandes 
+    <i class="fa fa-caret-down"></i>
+  </button>
+  <div class="dropdown-container">
+    <a href="index.php?action=ListOrder"><i class="fa fa-list text-white" aria-hidden="true"></i> Liste</a>
+  </div>
   <?php }} ?>
-  <a href="index.php?action=transferShop" style="font-size: 15px;"><i class="fas fa-undo-alt" style="color:rgb(174,140,95);" aria-hidden="true"></i> Retour à la boutique</a>
+  <a id="backToShop" href="index.php?action=transferShop"><i class="fas fa-undo-alt" style="color:rgb(174,140,95);" aria-hidden="true"></i> Retour à la boutique</a>
   
 </div>
 <div class="container mt-5">

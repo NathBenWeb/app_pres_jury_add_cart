@@ -10,6 +10,7 @@ class Router{
     private $ctrAdminClient;
     private $ctrPublicClient;
     private $ctrPublic;
+    private $ctrOrder;
 
     public function __construct(){
         $this -> ctrUser = new UserController;
@@ -19,6 +20,7 @@ class Router{
         $this -> ctrAdminClient = new ClientAdminController;
         $this -> ctrPublicClient = new ClientPublicController;
         $this -> ctrPublic = new PublicController;
+        $this -> ctrOrder = new OrderControllerAdmin;
     }
 
     public function getPath(){
@@ -136,6 +138,17 @@ class Router{
                     case "cancel" :
                         $this->ctrPublic->cancel();
                         break;
+                    // --------------------------------Orders-------------
+                    case "addOrder" :
+                        $this->ctrOrder->addOrder();
+                        break;
+                    case "ListOrder" :
+                        $this->ctrOrder->SelectOrders();
+                        break;
+                    case "DeleteOrder" :
+                        $this->ctrOrder->OrdersDelete();
+                        break;
+                    
                     // --------------------------------Static public pages-------------
                     case "home" :
                         $this->ctrPublic->home();

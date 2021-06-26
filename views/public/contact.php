@@ -1,5 +1,5 @@
 <?php ob_start();?>
-<img class="imgContact" src="./assets/pictures/restaurant-credit-card-processing.jpg" alt="" width="100%" height="100%">
+<img class="imgContact" src="./assets/pictures/restaurant-credit-card-processing.jpg" alt="" width="100%" height="">
 <div id="contact_container" class="container" >
 
     <!-- <section id="contact"> -->
@@ -7,7 +7,7 @@
         <div class="outer-container">
             
             <div class="telEmail">
-                <div class="item contact-box phone text-center">
+                <div id="telBox" class="item contact-box phone text-center">
                     <div class="text1">
                     <span class="logoContact"><i class="fas fa-mobile-alt"></i></span>
                         <a id="tel" href="tel:+33624035012">+33 6 24 03 50 12</a>

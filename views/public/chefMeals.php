@@ -18,40 +18,34 @@
     </div>
   </div>
 <!------------------------------Cards Meals--------------------------------------------------->
-  <?php foreach($menus as $meal){?>
-  <div id="cardAccueil" class="card mt-3 mb-3" style="max-width: 1300px;">
-    <div class="row">
-      <div class="col-6 mt-2">
-        <img src="./assets/pictures/<?=$meal->getPicture_meal();?>" alt="..." width="600px" height="250px">
-        <h1 id="titreCardAccueil" class="card-title ml-2 mb-4 mt-3"><?=$meal->getName_meal();?> by <?=strtoupper($meal->getChef()->getName_chef());?>  <span class="ml-3"><?=$meal->getPrice()." €";?><span></h1>
-    </div>
-    <div class="col-6">
-      <div class="card-body">
-      <p class="titrePlat">Pour commencer : </p>
-          <p class="card-text" id="start" style=""><?=substr($meal->getStart(), 0, 350);?></p>
-          <p class="titrePlat">Pour suivre : </p>
-          <p class="card-text" id="dish" style=""><?=substr($meal->getDish(), 0, 350);?></p>
-          <p class="titrePlat">Et pour finir : </p>
-          <p class="card-text" id="dessert" style=""><?=substr($meal->getDessert(), 0, 350);?></p>
-      </div>
-
-       <!-- Validate form -->
-       <div  class="">
-          <form action="index.php?action=cart" method="post">
-            <button onclick="popupCart()" id="addCart" name="envoi" type="submit" class="btn">Ajouter au panier</button>
-            <div id="snackbar">Ajouté au panier !</div>
-            <input type="hidden" name="id_meal" value="<?=$meal->getId_meal();?>">
-            <input type="hidden" name="name_meal" value="<?=$meal->getName_meal();?>">
-            <input type="hidden" name="name_chef" value="<?=$meal->getChef()->getName_chef();?>">
-            <input type="hidden" name="picture_meal" value="<?=$meal->getPicture_meal();?>">
-            <input type="hidden" name="price" value="<?=$meal->getPrice();?>">
-          </form>
+<?php foreach($menus as $meal){?>
+  <div class="container">
+    <div class="card mb-3" id="cardAccueil">
+      <div class="row g-0">
+        <div class="col-md-4 align-self-center ml-3">
+          <img class="" src="./assets/pictures/<?=$meal->getPicture_meal();?>" alt="..." width="100%"  class="p-2" id="imgMeal">
+        </div>
+        <div class="col-md-7 ml-3">
+          <div class="card-body">
+            <h1 id="titreCardAccueil" class="card-title"><?=$meal->getName_meal();?> by <?=strtoupper($meal->getChef()->getName_chef());?><span class="ml-2"><?=$meal->getPrice();?><span></h1>
+            <p class="card-text"><span>Pour commencer : </span><?=substr($meal->getStart(), 0, 350);?></p>
+            <p class="card-text"><span>Pour suivre : </span><?=substr($meal->getDish(), 0, 350);?></p>
+            <p class="card-text"><span>Et pour finir : </span><?=substr($meal->getDessert(), 0, 350);?></p>
+            <form action="index.php?action=cart" method="post">
+                <button onclick="popupCart()" id="addCart" name="envoi" type="submit" class="btn">Ajouter au panier</button>
+                <div id="snackbar">Ajouté au panier !</div>
+                <input type="hidden" name="id_meal" value="<?=$meal->getId_meal();?>">
+                <input type="hidden" name="name_meal" value="<?=$meal->getName_meal();?>">
+                <input type="hidden" name="name_chef" value="<?=$meal->getChef()->getName_chef();?>">
+                <input type="hidden" name="picture_meal" value="<?=$meal->getPicture_meal();?>">
+                <input type="hidden" name="price" value="<?=$meal->getPrice();?>">
+              </form>
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <?php } ?>
-</div>
+<?php } ?>
 
 <?php $contenu = ob_get_clean();
     require_once("./views/public/templatePublic.php");

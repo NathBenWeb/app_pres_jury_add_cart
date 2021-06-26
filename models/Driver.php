@@ -15,9 +15,15 @@ abstract class Driver{
     }
 
     protected function getRequest($sql, $params = null){
-        $result = self::getBd() ->prepare($sql);
+        $result = self::getBd()->prepare($sql);
         $result->execute($params);
 
         return $result;
+    }
+
+    protected function getLastInsertId(){
+
+        return self::getBd()->lastInsertId();
+
     }
 }

@@ -1,19 +1,15 @@
-/* body{
-  background-image: url("../pictures/restaurant-credit-card-processing.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-} */
-
 .imgContact{
-  position: absolute;
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
   z-index: -1;
 }
 
 #contact_container{
   font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  margin-top: 10%;
-
- 
+  margin-top: 3%;
 }
 
 #connex{
@@ -22,22 +18,21 @@
   
   
   #titreContact{
-    text-align: center;
     color:rgb(3, 3, 29);
     font-size: 30px;
     margin-bottom: 50px;
-   
+    font-weight:900;
+    margin-left: 60px;
   }
   
  .outer-container{
    display: grid;
    grid-template-columns: 30% 70%;
  }
+
   .telEmail{
     display: grid;
-    margin: auto;
-    /* grid-template-columns: 2fr 2fr; */
-    
+    margin: auto;    
   }
   
   .contact-box {
@@ -95,12 +90,13 @@
   }
   
   iframe{
-    width: 100%;
+    width: 90%;
     /* margin: auto; */
   }
 
   #iframe{
     border: rgb(3, 3, 29) solid;
+    margin-left: 10%;
     
   }
   
@@ -108,4 +104,39 @@
     font-size: 30px;
   }
   
+  @media only screen and (max-width: 950px){
+    #titreContact{
+      font-size: 20px;
+      margin-bottom: 10px;
+      margin-left: 50px;
+    }
+
+    iframe{
+      height: 80%;
+      width: 80%;
+      margin-top: 10%;
+    }
+
+    .contact-box {
+      padding: 10px;
+      margin-top: 0;
+    }
+
+    #emailContact{
+      font-size: 10px;
+    }
+
+    .logoContact{
+      font-size: 15px;
+    }
+
+    .phone {
+      margin-bottom: 15px;
+    }
+
+    .outer-container{
+      display: grid;
+      grid-template-columns: 50% 50%;
+    }
+  }
   

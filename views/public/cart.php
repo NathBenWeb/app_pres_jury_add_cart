@@ -1,4 +1,6 @@
-<?php ob_start(); ?>
+<?php ob_start(); 
+// var_dump($_SESSION['cart']);
+?>
 <!-- Section Panier-->
 <div id="" class="container d-flex">
   <section class="sectionCart1">
@@ -14,42 +16,50 @@
           <th>Actions</th>
         </tr>
       </thead>
-
-      <tbody id="tabCart">
+      
+      <tbody class="tabCart" id="tabCart">
       <?php
-        $prods = "";
-        foreach($_SESSION['cart'] as $cart){
+       if(isset($_SESSION['cart'])){
+        $meals = "";
+        foreach($_SESSION['cart'] as $key => $cart){
         
       ?>
         <tr class="text-center">
           <td><img src="./assets/pictures/<?=$cart['picture_meal']?>" alt="..." width="90px"></td>
+          
           <td><?=$cart['name_meal']?></td>
           <td>by <?=$cart['name_chef']?></td>
-          <td ><?=($cart['price'])?>.00<input class="itemPrice" type="hidden" value="<?=($cart['price'])?>"></td>
-          <td><input type="number" id="quant" name="quant" class="itemQt form-control" min="1" value="1" max="10"></td>
-          <td class="itemTotal"></td>
-          <td  class="text-center"><a class="btn" id="deleteCartItem" href="index.php?action=updateCart&id=<?=$cart['id_meal']?>"onclick="return confirm('Etes vous sûr de vouloir supprimer')"><i class="fas fa-trash"></i></a></td>
+          <td><?=($cart['price'])?><input type="hidden" id="priceItem" class="priceItem" value="<?=$cart['price']?>"></td>
+          <td><input type="number" step="1" name="quant"  class="qteItem" min="1" max="10"></td>
+          <td class="totalItem"></td>
+          <td  class="text-center">
+          <a class="btn" id="deleteCartItem" href="index.php?action=updateCart&id=
+          <?=$cart['id_meal']?>"onclick="return confirm('Etes vous sûr de vouloir supprimer')">
+          <i class="fas fa-trash"></i></a></td>
+
+          <input type="hidden" id="idMeal" class="idMeal" value="<?=$cart['id_meal']?>">
         </tr>
-      <?php } ?>
+      <?php }} ?>
       </tbody>
     </table>
 <!-- Message panier vide --> 
-    <?php if(count($_SESSION['cart']) === 0){?>
-      <div class="alert alert-danger text-center">Votre panier est vide</div>
-    <?php } ?>
+<?php
+
+    
+if( !isset($_SESSION['cart']) || count($_SESSION['cart']) === 0){?>
+  <div class="alert alert-danger text-center">Votre panier est vide</div>
+<?php }?>
 <!-- Bouton retour shop-->   
     <a class="btn" id="returnShop" href="index.php?action=shop"><i class="fas fa-undo-alt" style="color:rgb(174,140,95);" aria-hidden="true"></i> Continuez vos achats</a>
   </section>
-
-<!-- Section frais livraison, total et paiement-->
-  <section class="sectionCart2 mt-5">
-    <div id="validation" class="ml-5 border p-3 mt-5">
+  <section class="sectionCart2">
+    <div id="validation" class="ml-5 border p-3 mt-5 mb-5">
 <!-- Message Menu déjà ajouté au panier-->  
       <form>
         <label class="" for="date">Date de livraison souhaitée*</label>
-        <input type="date" id="date" class="form-control mb-2" required>
-        <label for="totalMenu">Prix total menu</label>
-        <textarea type="text"id="totalMenu" class="form-control mb-2" rows="1" readonly></textarea>
+        <input type="date" id="date" name="date" class="form-control mb-2" required>
+        <label for="totalMeals">Prix total menu</label>
+        <input type="text"id="totalMeals" class="form-control mb-2" rows="1" readonly></textarea>
         <label for="email" id="emailValider">Email*</label>
         <input type="email"id="email" class="form-control" placeholder="Veuillez saisir votre email...">
         <label for="firstname_client" id="firstnameValider">Prénom*</label>
@@ -57,7 +67,9 @@
         <label for="name_client" id="nameValider">Nom*</label>
         <input type="text"id="name" class="form-control" placeholder="Veuillez saisir votre nom...">
 <!-- Input hidden appelés dans la page paiement stripe (voir js stripe)-->
-        <input type="hidden" id="prods" value="<?=$prods?>">
+        <input type="hidden" name="quant" id="quant"  class="form-control" min="1" value="1">
+        <input type="hidden" id="ref" value="<?=$cart['id_meal']?>">
+        <input type="hidden" id="meals" value="<?=$meals?>">
         <button type="button" id="checkout-button" class="btn  col-12 mt-3">Valider ma commande</button>
       </form>
     </div>

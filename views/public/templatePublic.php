@@ -19,52 +19,82 @@
     <link rel="icon" type="image/png" sizes="18x18" href="./assets/pictures/logo2.png">
 </head>
 <body>
-<header>
+<header class="header">
   <div id="ancre"></div>
-  <div id="header" class="navbar">
-    <a id="logoHeader" class="navbar-brand" href="index.php"><img  src="./assets/pictures/sans_titre.png" alt="" class="logo" width="50px"></a>
-    <a id="hamburger" href="javascript:void(0);" class="icon" onclick="myFunction()"><i class="fa fa-bars"></i></a>
-    <a class="nav-link" aria-current="page" href="index.php?action=shop"><i class="fas fa-store"></i> Boutique</a>
-    <a class="nav-link" aria-current="page" href="index.php?action=chefs"><i class="fas fa-bread-slice"></i> Vos chefs</a>
-    <a class="nav-link" href="index.php?action=contact"><i class="fa fa-fw fa-envelope"></i> Contact</a>
-    <a class="nav-link" href="index.php?action=about"><i class="far fa-hand-point-right"></i> A propos</a>
-
+  <nav class="navbar">
+    
+    <ul class="nav-menu">
+      <a id="logoHeader" class="navbar-brand" href="index.php"><img  src="./assets/pictures/sans_titre.png" alt="" class="logo" width="50px"></a>
+      <li class="nav-item">
+        <a class="nav-link" aria-current="page" href="index.php?action=shop"><i class="fas fa-store"></i> Boutique</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" aria-current="page" href="index.php?action=chefs"><i class="fas fa-bread-slice"></i> Vos chefs</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="index.php?action=contact"><i class="fa fa-fw fa-envelope"></i> Contact</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="index.php?action=about"><i class="far fa-hand-point-right"></i> A propos</a>
+      </li>
     <?php if(!isset($_SESSION['AuthClient'])){?>
-    <a class="nav-link" href="index.php?action=sign_in" value=""><i class="fas fa-sign-in-alt"></i> Connexion
-    <a class="nav-link" href="index.php?action=sign_up" value="">S'inscrire</a>
+      <li class="nav-item">
+        <a class="nav-link" href="index.php?action=sign_in" value=""><i class="fas fa-sign-in-alt"></i> Connexion</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="index.php?action=sign_up" value="">S'inscrire</a>
+      </li>
     <?php } ?>
 
     <!------------------------- Compteur panier ----------------------------->
-    <a class="nav-link" href="index.php?action=updateCart" value=""><i class="fas fa-shopping-basket"></i>
-      <span id="cartCount" class="badge"></span>
-      <?php
-        if(isset($_SESSION['cart'])){
-          $nb_cart = sizeof($_SESSION['cart']);
-          echo $nb_cart;
-        }
-      ?>
-    </a>
+    <li class="nav-item">
+        <a class="nav-link" href="index.php?action=updateCart" value=""><i class="fas fa-shopping-basket"></i>
+        Mon panier<span id="cartCount" class="badge"></span>
+          <?php
+            if(isset($_SESSION['cart'])){
+              $nb_cart = sizeof($_SESSION['cart']);
+              echo $nb_cart;
+            }
+          ?>
+        </a>
+      </li>
+
     <!-------------------------------Menu client connecté----------------------------------------->
 
     <?php if(isset($_SESSION['AuthClient'])){?>
-    <li class="nav-item dropdown" >
-      <a class="nav-link dropdown-toggle" href="#" id="boutonDropdownNav" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          Bonjour <?php if(isset($_SESSION['AuthClient'])){
-                      echo $_SESSION['AuthClient']->firstname_client;
-                    } ?>
-      </a>
+      <li class="nav-item dropdown" id="nav-item-dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="boutonDropdownNav" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Bonjour <?php if(isset($_SESSION['AuthClient'])){
+                        echo $_SESSION['AuthClient']->firstname_client;
+                      } ?>
+        </a>
        
-      <ul id="dropdownNav" class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink">
-        <li><a class="nav-link" href="index.php?action=profile_client" value="">Mon profile</a></li>
-        <li><a class="nav-link" href="index.php?action=sign_out" value="">Déconnexion</a></li>
-      </ul>
-    </li>
-    <?php } ?> 
-  </div>
+        <ul id="dropdownNav" class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink">
+          <li><a class="nav-link" href="index.php?action=profile_client" value="">Mon profile</a></li>
+          <li><a class="nav-link" href="index.php?action=sign_out" value="">Déconnexion</a></li>
+        </ul>
+      </li>
+    
+    <?php } ?>
+    </ul>
+    <!-------------------------------Nav responsive----------------------------------------->
+    
+    <div class="hamburger">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span> 
+    </div>
+    
+    <div class="divLogo" >
+        <a id="logoHamburger" class="" href="index.php"><img  src="./assets/pictures/sans_titre.png" alt="" class="logo ml-auto mr-2" width="30px"></a>
+    </div>
+  </nav>
 </header>
+  <!-------------------------------Main => Bufferisation----------------------------------------->
   <main>
     <?=$contenu;?>
   </main>
+  <!-------------------------------Footer----------------------------------------->
 <footer>
   <div id="footer" class="navbar">
     <a class="navbar-brand" href="index.php">Un Chef à la maison</a>
@@ -84,10 +114,10 @@
   <script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
   <script src="https://js.stripe.com/v3/"></script>
   <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.5.1.js"></script>
-  <script src="./assets/js/cart.js"></script>
-  <script src="./assets/js/scriptStripe.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
   <script src="./assets/js/nav.js"></script>
   <script src="./assets/js/shop.js"></script>
+  <script src="./assets/js/cart.js" defer></script>
+  <script src="./assets/js/scriptStripe.js" defer></script>
 </body>
 </html> 

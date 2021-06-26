@@ -49,4 +49,5 @@ class AuthController{
         unset($_SESSION['AuthClient']);
         header('location:index.php?action=login_admin');
     }
+
 }

@@ -1,4 +1,15 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html{
+  height: 100%;
+}
 body {
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
   font-family: "Lato", sans-serif;
 }
 
@@ -29,7 +40,7 @@ body {
 }
 
 /* Style the sidenav links and the dropdown button */
-.sidenav a, .dropdown-btn {
+.sidenav a, .dropdown-btn, #backToShop {
   padding: 6px 8px 6px 16px;
   text-decoration: none;
   font-size: 17px;
@@ -44,7 +55,7 @@ body {
 }
 
 /* On mouse-over */
-.sidenav a:hover, .dropdown-btn:hover {
+.sidenav a:hover, .dropdown-btn:hover, #backToShop:hover {
   color:  #f2f2f2;
 }
 
@@ -78,6 +89,53 @@ body {
   font-family: 'Abril Fatface', cursive;
   color:  rgb(174,140,95);
   background-color: #CECECE;
+}
+  
+@media only screen and (max-width: 950px){
+  .sidenav {
+    width: 100px;
+  }
+
+  .sidenav a, .dropdown-btn, #backToShop {
+    font-size: 8px;
+  }
+
+  .h1Sidenav, .h2Sidenav{
+    font-size: 10px;
+  }
+
+  
+  #titreAdmin{
+    font-size: 15px;
+  }
+
+  #imgLogo{
+    width: 30px;
+  }
+
+  #titreAdmin{
+    font-size: 15px;
+    margin-left: 20px;
+  }
+
+ #listTitle{
+    font-size: 10px;
+  }
+
+  #search, #btn_chefMeals, #loupe{
+    display: none;
+  }
+
+  #tabList, #updateBtn, #deleteBtn{
+    font-size: 8px;
+  }
+
+  .main {
+    margin-left: 80px;
+  }
+  
+  
+  
 }
 /* Some media queries for responsiveness */
 @media screen and (max-height: 450px){

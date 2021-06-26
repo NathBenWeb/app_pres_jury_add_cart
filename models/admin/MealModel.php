@@ -57,7 +57,6 @@ class MealModel extends Driver{
         $result = $this -> getRequest($sql, ["id" => $meal -> getId_meal()]);
 
         return $result->rowCount();
-
     }
 
     public function mealItem(Meal $mParam){
@@ -121,6 +120,7 @@ class MealModel extends Driver{
                     VALUES (:name_meal, :start, :dish, :dessert, :price, :picture, :id_chef)";
 
        $tabParams = [
+           
                         "name_meal"=>$meal->getName_meal(),
                         "start"=>$meal->getStart(),
                         "dish"=>$meal->getDish(),
@@ -128,6 +128,7 @@ class MealModel extends Driver{
                         "price"=>$meal->getPrice(),
                         "picture"=>$meal->getPicture_meal(),
                         "id_chef"=>$meal->getChef()->getId_chef()
+
                     ];
         $result = $this -> getRequest($sql, $tabParams);
         return $result;

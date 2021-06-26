@@ -61,10 +61,8 @@ class PublicController{
                 $meals_cart = array_column($_SESSION['cart'], 'id_meal');
 
                 if(in_array($id_meal, $meals_cart)){
-                    echo "<div class='alert alert-danger text-center'>Cet article a déjà été ajouté au panier</div>";
+                    $alreadyAdd = "Cet article a déjà été ajouté au panier";
                 }else{
-                    $nbMealCart = count($_SESSION['cart']);
-
                     $newMealCart = [
                                         "id_meal" => $id_meal,
                                         "name_meal" => $name_meal,
@@ -72,9 +70,9 @@ class PublicController{
                                         "name_chef" => $name_chef,
                                         "price" => $price   
                                     ];
-                    $_SESSION['cart'][$nbMealCart] = $newMealCart;
+                    array_push($_SESSION['cart'], $newMealCart);
                 }
-                header("location:index.php?action=shop");
+
             }else{
                 $mealItemCart = [
                                     "id_meal" => $id_meal,
@@ -87,20 +85,27 @@ class PublicController{
                 $_SESSION['cart'][0] = $mealItemCart;
                 
             }
-            header("location:index.php?action=shop");
+            // header("location:index.php?action=shop");
+            require_once('./views/public/cart.php');
         }
-        require_once('./views/public/cart.php');
     }
 
     public function removeCart(){
         if(isset($_GET['id'])){
+            // var_dump($_GET['id']);
+            // var_dump($_SESSION);
+
             foreach($_SESSION['cart'] as $key => $cart){
                 if($cart['id_meal'] == $_GET['id']){
                     unset($_SESSION['cart'][$key]);
-                    require_once('./views/public/cart.php');  
+                    echo'<script>';
+                     echo'id='.json_encode($cart['id_meal']).';';
+                    echo 'localStorage.removeItem(`q${id}`)';
+                    echo'</script>';
+                    //header('https://localhost/php/oriente_objet/apps/app_pres_jury/index.php?action=cart');
                 }  
             }
-        }
+         }
         require_once('./views/public/cart.php');
     }
 
@@ -119,23 +124,22 @@ class PublicController{
                 'unit_amount' =>  $_POST['price']*100,
                 'product_data' => [
                     'name' => "Votre commande Un chef à la maison s'élève à :",
-                    'images' => ["https://imgshare.io/images/2021/05/23/AdobeStock_352140857.md.jpg"],
+                    'images' => ["https://imgshare.io/images/2021/06/25/sans_titre.th.png"],
                 ],
                 ],
                 'quantity' => 1,
             ]],
             'customer_email' => $_POST['email'],
             'mode' => 'payment',
-            'success_url' => 'http://localhost/php/oriente_objet/apps/app_pres_jury/index.php?action=success',
+            'success_url' => 'http://localhost/php/oriente_objet/apps/app_pres_jury/index.php?action=addOrder',
             'cancel_url' => 'http://localhost/php/oriente_objet/apps/app_pres_jury/index.php?action=cancel',
             ]);
 
             $_SESSION['pay'] = $_POST;
             echo json_encode(['id' => $checkout_session->id]);
-
-            $_SESSION['cart'] = [];
         }
     }
+
 
     public function confirmation(){
             
@@ -146,7 +150,7 @@ class PublicController{
         $name_client = $_SESSION["pay"]["name_client"];
 
         $mail = new PHPMailer(true);
-     
+
             try {
                 //Server settings
                 $mail->SMTPDebug = SMTP::DEBUG_SERVER;                     
@@ -172,7 +176,7 @@ class PublicController{
             }catch (Exception $e) {
                 echo "Votre message n'a pas pu être envoyé. Mailer Error: {$mail->ErrorInfo}";
             }
-        
+            session_unset();
             require_once("./views/public/success.php");
     }
     // -----------------------------Static public pages--------------------------------
