@@ -45,7 +45,6 @@ class PublicController{
             $tabChef = $this->pubChef->getChefs();
             $meals = $this->pubMeal->getMeals();
 
-
             require_once('./views/public/shop.php');
         }
     }
@@ -62,7 +61,7 @@ class PublicController{
                 $meals_cart = array_column($_SESSION['cart'], 'id_meal');
 
                 if(in_array($id_meal, $meals_cart)){
-                    $alreadyAdd = "Cet article a déjà été ajouté au panier";
+                    echo "<div class='alert alert-danger text-center'>Cet article a déjà été ajouté au panier</div>";
                 }else{
                     $nbMealCart = count($_SESSION['cart']);
 
@@ -86,10 +85,9 @@ class PublicController{
                                 ];
 
                 $_SESSION['cart'][0] = $mealItemCart;
+                
             }
             header("location:index.php?action=shop");
-           
-        
         }
         require_once('./views/public/cart.php');
     }
@@ -120,11 +118,11 @@ class PublicController{
                 'currency' => 'eur',
                 'unit_amount' =>  $_POST['price']*100,
                 'product_data' => [
-                    'name' => $_POST['name_meal']." - ".$_POST['name_chef'],
-                    'images' => ["https://imgshare.io/images/2021/04/20/paiement.jpg"],
+                    'name' => "Votre commande Un chef à la maison s'élève à :",
+                    'images' => ["https://imgshare.io/images/2021/05/23/AdobeStock_352140857.md.jpg"],
                 ],
                 ],
-                'quantity' => $_POST["quantity"],
+                'quantity' => 1,
             ]],
             'customer_email' => $_POST['email'],
             'mode' => 'payment',
@@ -134,16 +132,18 @@ class PublicController{
 
             $_SESSION['pay'] = $_POST;
             echo json_encode(['id' => $checkout_session->id]);
+
+            $_SESSION['cart'] = [];
         }
     }
 
     public function confirmation(){
-        $meal = new Meal();
-        $meal -> setId_meal($_SESSION["pay"]["id_meal"]);
+            
+        $client = new Client();
+        $client -> setId_client($_SESSION["pay"]["id_client"]);
         $email = $_SESSION["pay"]["email"];
-        $name_meal = $_SESSION["pay"]["name_meal"];
-        $name_chef = $_SESSION["pay"]["name_chef"];
-        $price = $_SESSION["pay"]["price"];
+        $firstname_client = $_SESSION["pay"]["firstname_client"];
+        $name_client = $_SESSION["pay"]["name_client"];
 
         $mail = new PHPMailer(true);
      
@@ -160,20 +160,13 @@ class PublicController{
 
                 //Recipients
                 $mail->setFrom('nathaliebendavidweb@gmail.com', 'Un Chef à la maison');
-                $mail->addAddress("$email", 'Mr/Mme');
+                $mail->addAddress("$email", 'Mr/Mme '. $firstname_client.' '. $name_client);
                 
 
                 //Content
                 $mail->isHTML(true);
                 $mail->Subject = 'Confirmation de commande';
-                $mail->Body = '<h3>Votre commande est confirmée</h3>
-                                <div>
-                                    <b>Nom menu: </b>'.$name_meal.'
-                                    <b>Nom chef: </b>'.$name_chef.'
-                                    <b>Prix: </b>'.$price.'
-                                    <p>Nous vous remercions pour votre achat</p>
-                                </div>';
-
+                $mail->Body = '<h3>Votre commande est confirmée</h3>';
                 $mail->send();
                 echo 'Votre email a bien été envoyé au client';
             }catch (Exception $e) {

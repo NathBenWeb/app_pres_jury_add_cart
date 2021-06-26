@@ -17,7 +17,6 @@
       </ul>
     </div>
   </div>
-
 <!------------------------------Cards Meals--------------------------------------------------->
   <?php foreach($meals as $meal){?>
   <div id="cardAccueil" class="card mb-3" >
@@ -33,11 +32,11 @@
           <p class="titrePlat">Pour suivre : </p>
           <p class="card-text" id="dish" style=""><?=substr($meal->getDish(), 0, 350);?></p>
           <p class="titrePlat">Et pour finir : </p>
-          <p class="card-text" id="dessert" style=""><?=substr($meal->getDessert(), 0, 350);?></p>
-          
+          <p class="card-text" id="dessert" style=""><?=substr($meal->getDessert(), 0, 350);?></p> 
           <!-- Validate form -->
           <form action="index.php?action=cart" method="post">
-            <button id="addCart" name="envoi" type="submit" class="btn">Ajouter au panier</button>
+            <button onclick="popupCart()" id="addCart" name="envoi" type="submit" class="btn">Ajouter au panier</button>
+            <div id="snackbar">Ajouté au panier !</div>
             <input type="hidden" name="id_meal" value="<?=$meal->getId_meal();?>">
             <input type="hidden" name="name_meal" value="<?=$meal->getName_meal();?>">
             <input type="hidden" name="name_chef" value="<?=$meal->getChef()->getName_chef();?>">

@@ -6,7 +6,7 @@ abstract class Driver{
     private static function getBd(){
         if(self::$bd === null){
             try{
-                self::$bd = new PDO("mysql:host=localhost; dbname=ecf_7", "root", "");
+                self::$bd = new PDO("mysql:host=localhost; dbname=un_chef_maison", "root", "");
             }catch(PDOException $e){
                 die('Echec de connexion: '.$e->getMessage());
             }

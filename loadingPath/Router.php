@@ -44,7 +44,7 @@ class Router{
                         break;
                     case "transferAdmin" :
                         AuthController::logoutAndTransferAdmin();
-                        break;                    
+                        break;
                     // --------------------------------Users Admin-------------
                     case "list_users" :
                         $this->ctrUser->usersList(); 
@@ -118,9 +118,6 @@ class Router{
                     case "chefs" :
                         $this->ctrPublic-> chefsSlides();
                         break;
-                    // case "checkout" :
-                    //     $this->ctrPublic->recap();
-                    //     break;
                     case "cart" :
                         $this->ctrPublic->addCart();
                         break;

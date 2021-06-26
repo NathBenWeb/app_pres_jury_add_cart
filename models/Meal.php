@@ -54,67 +54,7 @@ class Meal{
         return $this;
     }
 
-    /**
-     * Get the value of price
-     */ 
-    public function getPrice()
-    {
-        return $this->price;
-    }
-
-    /**
-     * Set the value of price
-     *
-     * @return  self
-     */ 
-    public function setPrice($price)
-    {
-        $this->price = $price;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of picture_meal
-     */ 
-    public function getPicture_meal()
-    {
-        return $this->picture_meal;
-    }
-
-    /**
-     * Set the value of picture_meal
-     *
-     * @return  self
-     */ 
-    public function setPicture_meal($picture_meal)
-    {
-        $this->picture_meal = $picture_meal;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of chef
-     */ 
-    public function getChef()
-    {
-        return $this->chef;
-    }
-
-    /**
-     * Set the value of chef
-     *
-     * @return  self
-     */ 
-    public function setChef($chef)
-    {
-        $this->chef = $chef;
-
-        return $this;
-    }
-
-    /**
+      /**
      * Get the value of start
      */ 
     public function getStart()
@@ -170,6 +110,67 @@ class Meal{
     public function setDessert($dessert)
     {
         $this->dessert = $dessert;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of price
+     */ 
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * Set the value of price
+     *
+     * @return  self
+     */ 
+    public function setPrice($price)
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    
+    /**
+     * Get the value of picture_meal
+     */ 
+    public function getPicture_meal()
+    {
+        return $this->picture_meal;
+    }
+
+    /**
+     * Set the value of picture_meal
+     *
+     * @return  self
+     */ 
+    public function setPicture_meal($picture_meal)
+    {
+        $this->picture_meal = $picture_meal;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of chef
+     */ 
+    public function getChef()
+    {
+        return $this->chef;
+    }
+
+    /**
+     * Set the value of chef
+     *
+     * @return  self
+     */ 
+    public function setChef($chef)
+    {
+        $this->chef = $chef;
 
         return $this;
     }

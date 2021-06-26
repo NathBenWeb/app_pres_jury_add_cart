@@ -9,8 +9,8 @@ class ClientPublicController{
     }
 
     public function signUpClient(){
-        if(isset($_POST["soumis"]) && !empty($_POST['name']) && !empty($_POST['login']) && !empty($_POST['email']) == !empty($_POST['email2']) && !empty($_POST['pass']) == !empty($_POST['pass2'])){
-            if(filter_var($_POST["email"], FILTER_VALIDATE_EMAIL) && strlen($_POST['login']) >=20 && strlen($_POST["pass"]) >= 4){
+        if(isset($_POST["soumis"]) && !empty($_POST['name']) && !empty($_POST['login'])){
+            if(filter_var($_POST["email"], FILTER_VALIDATE_EMAIL) && strlen($_POST["pass"]) >= 5){
                 $name = trim(strip_tags(addslashes($_POST["name"])));
                 $firstname = trim(strip_tags(addslashes($_POST["firstname"])));
                 $address = trim(strip_tags(addslashes($_POST["address"])));
@@ -18,10 +18,8 @@ class ClientPublicController{
                 $city = trim(strip_tags(addslashes($_POST["city"])));
                 $country = trim(strip_tags(addslashes($_POST["country"])));
                 $email = trim(strip_tags(addslashes($_POST["email"])));
-                $email2 = trim(strip_tags(addslashes($_POST["email2"])));
                 $login = trim(strip_tags(addslashes(strlen($_POST["login"]))));
                 $pass = sha1(trim(strip_tags(addslashes($_POST["pass"]))));
-                $pass2 = sha1(trim(strip_tags(addslashes($_POST["pass2"]))));
 
                 $newC = new Client();
                 $newC->setName_client($name);
@@ -31,16 +29,16 @@ class ClientPublicController{
                 $newC->setCity($city);
                 $newC->setCountry($country);
                 $newC->setEmail_client($email);
-                $newC->setEmail_client($email2);
                 $newC->setLogin_client($login);
                 $newC->setPass_client($pass);
-                $newC->setPass_client($pass2);
                 $newC->setStatus_client(1);                
                 
                 $ok = $this -> adminClient -> insertClient($newC);
                 if($ok){
-                    header("location:index.php?action=shop");
+                    header("location:index.php?action=sign_in");
                 }
+            }else{
+                $restrict =  "Votre mot de passe doit comporter au moins 5 caractères";
             }
         }
         require_once("./views/public/clients/inscription.php");
@@ -81,8 +79,6 @@ class ClientPublicController{
         $editP -> setId_client($id);
             
         $editProfile = $this -> adminClient->clientItem($editP);
-            
-        $valid ="";
 
         if(isset($_POST["soumis"]) && !empty($_POST['login']) && !empty($_POST['login'])){
             $name = trim(strip_tags(addslashes($_POST["name"])));
@@ -92,10 +88,7 @@ class ClientPublicController{
             $city = trim(strip_tags(addslashes($_POST["city"])));
             $country = trim(strip_tags(addslashes($_POST["country"])));
             $email = trim(strip_tags(addslashes($_POST["email"])));
-            $email2 = trim(strip_tags(addslashes($_POST["email2"])));
             $login = trim(strip_tags(addslashes($_POST["login"])));
-            $pass = md5(trim(strip_tags(addslashes($_POST["pass"]))));
-            $pass2 = md5(trim(strip_tags(addslashes($_POST["pass2"]))));
 
             $editProfile->setId_client($id);
             $editProfile->setName_client($name);
@@ -105,22 +98,13 @@ class ClientPublicController{
             $editProfile->setCity($city);
             $editProfile->setCountry($country);
             $editProfile->setEmail_client($email);
-            $editProfile->setEmail_client($email2);
             $editProfile->setLogin_client($login);
-            $editProfile->setPass_client($pass);
-            $editProfile->setPass_client($pass2);
             $editProfile->setStatus_client(1);                
                 
             $ok = $this -> adminClient -> updateClient($editProfile);
-
-            // Condition à vérifier car message ne s'affiche pas
-            header("location:index.php?action=profile_client"); 
-            if($ok = $valid){
-                echo "Votre profile a bien été modifié";
-                
-            }else{
-                echo "Votre profile n'a pas été modifié";
-            }
+           
+            header("location:index.php?action=shop");
+            
         }
         require_once("./views/public/clients/profileClient.php");
     }

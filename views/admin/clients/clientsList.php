@@ -23,7 +23,6 @@
                 <th>Email</th>
                 <th>Date d'inscription</th>
                 <th>Login</th>
-                <th>Mot de passe</th>
                 <th>Statut</th>
                 <?php if($_SESSION["Auth"]->id_g == 1){?>
                 <th colspan="2" class="text-center">Action</th>

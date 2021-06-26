@@ -43,14 +43,11 @@ class MealController{
             $editM = new Meal;
             $editM->setId_meal($id);
 
-            //editMeal = variable à integrer dans la view pour appeler la valeur pour l'affichage
             $editMeal = $this -> adMeal-> mealItem($editM); 
 
-        // Pour afficher toutes les catégories dans le form-select de la view
             $tabChef = $this -> adChef  -> getChefs();
         
             if(isset($_POST["soumis"]) && !empty($_POST["name_meal"]) && !empty($_POST["price"])){
-        
                 $name_meal = htmlentities(trim($_POST["name_meal"]));
                 $start = htmlentities(trim($_POST["start"]));
                 $dish = htmlentities(trim($_POST["dish"]));
@@ -59,7 +56,6 @@ class MealController{
                 $id_chef = htmlentities(trim($_POST["id_chef"]));
                 $picture_meal = $_FILES ["picture"]["name"];
 
-                // On va modifier l'objet $editMeal créé plus haut dans le premier if
                 $editMeal->setName_meal($name_meal);
                 $editMeal->setStart($start);
                 $editMeal->setDish($dish);
@@ -68,15 +64,11 @@ class MealController{
                 $editMeal->setPicture_meal($picture_meal);
                 $editMeal->getChef()->setId_chef($id_chef);
               
-                
-                // Pour pouvoir récupérer une image n'importe où et qu'elle s'importe dans le dossier image une fois téléchargée
                 $destination = "./assets/pictures/";
                 move_uploaded_file($_FILES["picture"]["tmp_name"], $destination.$picture_meal);
 
                 $ok = $this->adMeal->updateMeal($editMeal);
-                // if($ok > 0){
                     header("location:index.php?action=list_meals");
-                // }
             }
             require_once("./views/admin/meals/editMeal.php");
         }
@@ -85,7 +77,6 @@ class MealController{
     public function addMeal(){
         AuthController::isLogged();
         if(isset($_POST["soumis"]) && !empty($_POST["name_meal"]) && !empty($_POST["price"])){
-    
             $name_meal = htmlspecialchars(trim($_POST["name_meal"]));
             $start = htmlspecialchars(trim($_POST["start"]));
             $dish = htmlspecialchars(trim($_POST["dish"]));
@@ -103,7 +94,6 @@ class MealController{
             $newM->setPicture_meal($picture_meal);
             $newM->getChef()->setId_chef($id_chef);
             
-            // Pour pouvoir récupérer une image n'importe où et qu'elle s'importe dans le dossier image une fois téléchargée
             $destination = "./assets/pictures/";
             move_uploaded_file($_FILES["picture"]["tmp_name"], $destination.$picture_meal);
 

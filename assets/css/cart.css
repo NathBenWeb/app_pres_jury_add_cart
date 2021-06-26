@@ -23,5 +23,12 @@
     border: solid 1px rgb(174,140,95);
     background-color: rgb(5, 5, 53);
     color: rgb(174,140,95);
+}
 
+.sectionCart1{
+    width: 70%;
+}
+
+.sectionCart2{
+    width: 30%;
 }

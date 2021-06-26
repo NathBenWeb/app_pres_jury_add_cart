@@ -48,10 +48,10 @@ class MealModel extends Driver{
         if($result->rowCount() > 0){
             return $tabMeals;
         }else{
-            return "No meal found";
+            return "Aucun menu n'a été trouvé";
         }
     }
-    // Pour supprimer via un objet dans le Model
+   
     public function deleteMeal(Meal $meal){
         $sql = "DELETE FROM meals WHERE id_meal = :id";
         $result = $this -> getRequest($sql, ["id" => $meal -> getId_meal()]);

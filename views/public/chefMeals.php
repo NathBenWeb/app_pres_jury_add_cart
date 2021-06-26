@@ -37,8 +37,9 @@
 
        <!-- Validate form -->
        <div  class="">
-          <form action="index.php?action=checkout" method="post">
-            <button id="buttonAccueil" name="envoi" type="submit" class="btn">Ajouter au panier</button>
+          <form action="index.php?action=cart" method="post">
+            <button onclick="popupCart()" id="addCart" name="envoi" type="submit" class="btn">Ajouter au panier</button>
+            <div id="snackbar">Ajouté au panier !</div>
             <input type="hidden" name="id_meal" value="<?=$meal->getId_meal();?>">
             <input type="hidden" name="name_meal" value="<?=$meal->getName_meal();?>">
             <input type="hidden" name="name_chef" value="<?=$meal->getChef()->getName_chef();?>">

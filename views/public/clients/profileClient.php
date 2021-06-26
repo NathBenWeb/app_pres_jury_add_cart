@@ -2,15 +2,15 @@
 
 <div id="contact_container" class="container" >
 
-<?php if(isset($valid)){  ?>
-<?php } ?>
-    <section id="inscription">
+
+    <section class="mt-5" id="inscription">
         <h1 id="titreInscription">Bonjour <?php if(isset($_SESSION['AuthClient'])){
             echo $_SESSION['AuthClient']->firstname_client;
-            } ?>, veuillez modifiez votre profile
+            } ?>,<br> veuillez modifiez votre profile
         </h1>
-
-        <form id="contact-form" action="<?php $_SERVER["PHP_SELF"];?>" method="post" class="input-group row g-3">
+        
+      
+        <form id="contact-form" action="<?php $_SERVER["PHP_SELF"];?>" method="post" class="input-group row g-3 mt-2">
             <?php
                 if(isset($erreur)){
                     echo $erreur;

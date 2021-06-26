@@ -6,16 +6,17 @@
     <title>Un chef à la maison</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/css/shop.css">
     <link rel="stylesheet" href="./assets/css/nav.css">
     <link rel="stylesheet" href="./assets/css/contact.css">
     <link rel="stylesheet" href="./assets/css/inscription.css">
     <link rel="stylesheet" href="./assets/css/chefs.css">
     <link rel="stylesheet" href="./assets/css/about.css">
-    <link rel="stylesheet" href="./assets/css/shop.css">
     <link rel="stylesheet" href="./assets/css/chefMeals.css">
     <link rel="stylesheet" href="./assets/css/cart.css">
+    <link rel="stylesheet" href="./assets/css/loginClient.css">
     <link rel="icon" type="image/png" sizes="18x18" href="./assets/pictures/logo2.png">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 </head>
 <body>
 <header>
@@ -29,7 +30,7 @@
     <a class="nav-link" href="index.php?action=about"><i class="far fa-hand-point-right"></i> A propos</a>
 
     <?php if(!isset($_SESSION['AuthClient'])){?>
-    <a class="nav-link" href="index.php?action=sign_in" value=""> Connexion
+    <a class="nav-link" href="index.php?action=sign_in" value=""><i class="fas fa-sign-in-alt"></i> Connexion
     <a class="nav-link" href="index.php?action=sign_up" value="">S'inscrire</a>
     <?php } ?>
 
@@ -43,7 +44,7 @@
         }
       ?>
     </a>
-    <!------------------------------------------------------------------------>
+    <!-------------------------------Menu client connecté----------------------------------------->
 
     <?php if(isset($_SESSION['AuthClient'])){?>
     <li class="nav-item dropdown" >
@@ -59,9 +60,7 @@
       </ul>
     </li>
     <?php } ?> 
-    
-   
-  </div> 
+  </div>
 </header>
   <main>
     <?=$contenu;?>
@@ -85,7 +84,10 @@
   <script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
   <script src="https://js.stripe.com/v3/"></script>
   <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.5.1.js"></script>
+  <script src="./assets/js/cart.js"></script>
   <script src="./assets/js/scriptStripe.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
   <script src="./assets/js/nav.js"></script>
+  <script src="./assets/js/shop.js"></script>
 </body>
 </html> 

@@ -1,22 +1,21 @@
-const stripe = Stripe("pk_test_51IM8bvL6FL0Y9IWwrJZLsGPtuaPTJLfejlOa3l5JkPqPBUJEKIaAuU9JdR7F7PUaWfTfehfPx02kDsr5DqYefVW600mEMOhTDr");
-const checkoutButton = document.getElementById("checkout-button");
+$(function(){
 
-checkoutButton.onclick = function(e){
-    e.preventDefault();
-    const email = document.getElementById("email");
-    console.log(email.value);
+    const stripe = Stripe("pk_test_51IM8bvL6FL0Y9IWwrJZLsGPtuaPTJLfejlOa3l5JkPqPBUJEKIaAuU9JdR7F7PUaWfTfehfPx02kDsr5DqYefVW600mEMOhTDr");
+    const checkoutButton = $('#checkout-button');
+    checkoutButton.on('click', function(e){
+        e.preventDefault();
+        console.log($('#email').val());
 
-    $.ajax({
+        
+        $.ajax({
             url:'index.php?action=pay',
             method:'post',
             data:{
-                id_meal: $("#ref").val(),
-                name_meal: $("#name").val(),
-                name_chef: $("#chef").val(),
-                price: $("#prix").val(),
+                name_meal: $("#prods").val(),
+                price: $("#totalMenu").val(),
                 email: $("#email").val(),
-                quantity: $("#quant").val(),
-
+                firstname_client: $("#firstname").val(),
+                name_client: $("#name").val()
             },
             datatype: 'json',
             success:function(session){
@@ -27,5 +26,5 @@ checkoutButton.onclick = function(e){
                 console.error("fail to send!");
             }
         });
-    
-}
+    })
+});

@@ -1,11 +1,11 @@
 <?php ob_start(); ?>
 
-<div class="container">
-<h2 class="text-center text-decoration-underline mb-4 mt-4">Formulaire de connexion</h2>
+<div id="containerLoginClient" class="container">
+    <h2 class="text-center text-decoration-underlinemt">Formulaire de connexion</h2>
     <div class="row mt-3">
         <div class="col-6 offset-3">
             <?php if(isset($error)){?>
-                <div class="alert alert-danger text-center"><?=$error?></div>
+            <div class="alert alert-danger text-center"><?=$error?></div>
             <?php } ?>
             <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post" class="text-center">
                
